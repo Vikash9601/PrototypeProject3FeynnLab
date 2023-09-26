@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <title>Customer Churn Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Churn Prediction</h1>
+        <form id="churn-form" method="POST" action="/submit" onsubmit="return validateForm()">
+            <label for="credit_score">Credit Score:</label>
+            <input type="number" id="credit_score" name="credit_score" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">select any options</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="tenure">Tenure:</label>
+            <input type="number" id="tenure" name="tenure" required>
+
+            <label for="balance">Balance:</label>
+            <input type="number" id="balance" name="balance" required>
+
+            <label for="prods">No. of products used by Customer</label>
+            <input type="number" id="prods" name="prods" required>
+
+            <label for="crcdis">credit card issued</label>
+            <label>
+                <input type="radio" name="crcdisyesno" value="1"> Yes
+            </label>
+            <label>
+                <input type="radio" name="crcdisyesno" value="0"> No
+            </label>
+            
+
+            <label for="IAM">Is Active member</label>
+            <label>
+                <input type="radio" name="activeyesno" value="1"> Yes
+            </label>
+            <label>
+                <input type="radio" name="activeyesno" value="0"> No
+            </label>
+
+
+            <label for="sal">Estimated Salary</label>
+            <input type="number" id="sal" name="sal" required>
+
+            <button type="submit" id="submitButton">Predict</button>
+        </form>
+        <div id="result">
+            {% if predictions %}
+            {% if predictions == 1 %}
+                <h2>Customer churn: Yes {{ predictions }}</h2>
+            {% else %}
+                <h2>Customer churn: No {{ predictions }}</h2>
+            {% endif %}
+        {% endif %}
+        
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
